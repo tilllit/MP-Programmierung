@@ -14,4 +14,4 @@ for line in lines:
                     LineObj.y,
                     LineObj.z)
     funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
-    funktionen.ausführen()              # Schritt 3: Bewegung ausführen
+    funktionen.ausfuehren()              # Schritt 3: Bewegung ausführen

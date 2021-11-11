@@ -59,5 +59,5 @@ def laden(line):
 def berechnung(line):
     print("Hier wird die Berechnung", line.nr,"der Rädergeschw. stattfinden!")
 
-def ausführen():
+def ausfuehren():
     print("Ausführung")
