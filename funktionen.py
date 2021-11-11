@@ -3,7 +3,7 @@ import unterfunktionen
 # ! ! !   E R W E I T E R U N G     N O T W E N D I G   ! ! !
 
 # Liest N, X, Y & Z aus der Zeile und erstellt Line-Objekt
-def gcode(line):
+def laden(line):
 
     # Create variables
     l = list(line)
@@ -58,3 +58,6 @@ def gcode(line):
 
 def berechnung(line):
     print("Hier wird die Berechnung", line.nr,"der Rädergeschw. stattfinden!")
+
+def ausführen():
+    print("Ausführung")
