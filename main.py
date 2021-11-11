@@ -1,5 +1,7 @@
 import funktionen
 
+# test mooooooooooooo
+x=1 #test
 
 # Datei öffnen
 file = open("gcode.txt","r")
