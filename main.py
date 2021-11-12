@@ -11,9 +11,9 @@ file.close()
 # Geht Zeile für Zeile durch
 for line in lines:
     LineObj = funktionen.laden(line)    # Schritt 1: G-Code
-    print("Main: ", LineObj.nr,         # Print (überprüfen)
+    print("Laden in Main: ", LineObj.nr,         # Print (überprüfen)
                     LineObj.x,
                     LineObj.y,
                     LineObj.z)
     funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
-    funktionen.ausfuehren()              # Schritt 3: Bewegung ausführen
+    funktionen.ausfuehren()             # Schritt 3: Bewegung ausführen
