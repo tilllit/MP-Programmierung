@@ -63,7 +63,12 @@ def berechnung(line):
         print("X für Vektor")
     else:
         print("Kein X")
+    y =line.y
+    if (y != 0):
+        print("y für Vektor")
+    else:
+        print("Kein y")
 
 def ausfuehren():
     print("Ausführen aufgerufen")
-    # no no nonsense
+    # no no nonsense BULLLshit
