@@ -1,7 +1,5 @@
 import funktionen
 
-#test NOOOOOOWWWWWWWWWWWWW
-
 # Datei öffnen
 file = open("gcode.txt","r")
 lines = file.readlines()
