@@ -66,4 +66,3 @@ def berechnung(line):
 
 def ausfuehren():
     print("Ausführen aufgerufen")
-    # nonsens
