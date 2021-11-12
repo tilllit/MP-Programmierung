@@ -66,4 +66,4 @@ def berechnung(line):
 
 def ausfuehren():
     print("Ausführen aufgerufen")
-    # no no nonsense
+    # no no nonsense BULLLshit
