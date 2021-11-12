@@ -1,4 +1,5 @@
 import unterfunktionen
+import math
 
 # ! ! !   E R W E I T E R U N G     N O T W E N D I G   ! ! !
 
@@ -66,8 +67,16 @@ def berechnung(line):
     y =line.y
     if (y != 0):
         print("y für Vektor")
-    else:
-        print("Kein y")
+    else:{print("Kein y")}
+
+    # Berechnung der Rototationsgeschwindigkeiten
+    Vx = line.x
+    Vy = line.y
+    p1 = Vx * (-1) + Vy * 0
+    p2 = Vx * (0.5) + Vy * (-math.sqrt(3) / 2)
+    p3 = Vx * (0.5) + Vy * (math.sqrt(3) / 2)
+    print(p1, p2, p3)
+
 
 def ausfuehren():
     print("Ausführen aufgerufen")
