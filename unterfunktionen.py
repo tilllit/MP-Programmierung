@@ -39,8 +39,11 @@ def convert_list_to_float(list):
         return e        # return 0
 
 # Punkt-Drehung
-def rotate_point(p, alpha):
+def rotate_point(p, angle):
+    alpha = angle * (math.pi / 180)
     p_n = [0, 0]
-    p_n[0] = math.cos(alpha) * p[0] - math.sin(alpha) * p[1]
-    p_n[1] = math.sin(alpha) * p[0] + math.cos(alpha) * p[1]
+    p_n[0] = (math.cos(alpha) * p[0]) + (-math.sin(alpha) * p[1])
+    p_n[1] = (math.sin(alpha) * p[0]) + (math.cos(alpha) * p[1])
+    p_n[0] = round(p_n[0], 3)
+    p_n[1] = round(p_n[1], 3)
     return p_n

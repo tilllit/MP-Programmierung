@@ -1,4 +1,5 @@
 import funktionen
+import unterfunktionen
 
 # Datei öffnen
 file = open("gcode.txt","r")
@@ -14,3 +15,9 @@ for line in lines:
                     LineObj.z)
     funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
     funktionen.ausfuehren()             # Schritt 3: Bewegung ausführen
+
+
+# Test "rotate_point" Funktion
+arr = [0, 5]
+test = unterfunktionen.rotate_point(arr, 180)
+print("rotate Point", test)
