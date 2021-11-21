@@ -5,9 +5,12 @@ import math
 class Line:
     def __init__(self, Nr, X, Y, Z):
         self.nr = Nr
+        self.g = ""
         self.x = X
         self.y = Y
         self.z = Z
+        self.i = ""
+        self.j = ""
 
 # Umformung in Integer
 def convert_list_to_int(list):
@@ -55,3 +58,14 @@ def rotate_point(p, angle):
     p_n[1] = round(p_n[1], 3)               # runde Y auf 3 Nachkommastellen
 
     return p_n                              # return point
+
+# Einheitsvektor Berechnen
+def unit_vector(vec):
+    bvec = math.sqrt((vec[0]**2) + (vec[1]**2))     # Betrag bilden
+    try:
+        X = vec[0] * (1 / bvec)
+        Y = vec[1] * (1 / bvec)
+        res = [X, Y]
+    except:
+        res = [0, 0]
+    return res

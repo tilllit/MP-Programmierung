@@ -9,13 +9,14 @@ file.close()
 # Geht Zeile für Zeile durch
 for line in lines:
     LineObj = funktionen.laden(line)    # Schritt 1: G-Code
-    print("Laden in Main: ", LineObj.nr,         # Print (überprüfen)
-                    LineObj.x,
-                    LineObj.y,
-                    LineObj.z)
     funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
     funktionen.ausfuehren()             # Schritt 3: Bewegung ausführen
 
 
+    if LineObj.g != 0:
+        print("G test:", LineObj.g)       # testet .g attribut eines Line Objektes
+
+
 # Test "rotate_point" Funktion
-print("rotate Point", unterfunktionen.rotate_point([0, 5], 180))
+print("Rotate Point", unterfunktionen.rotate_point([0, 5], 180))
+print("Einheitsvektorfunktion: ", unterfunktionen.unit_vector([3, 5]))
