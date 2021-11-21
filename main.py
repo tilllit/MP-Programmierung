@@ -12,6 +12,7 @@ for line in lines:
     funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
     funktionen.ausfuehren()             # Schritt 3: Bewegung ausführen
 
+                 !!!   ----    ! TESTBEREICH !     ----   !!!
 
     if LineObj.g != 0:
         print("G test:", LineObj.g)       # testet .g attribut eines Line Objektes
