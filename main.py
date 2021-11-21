@@ -18,6 +18,4 @@ for line in lines:
 
 
 # Test "rotate_point" Funktion
-arr = [0, 5]
-test = unterfunktionen.rotate_point(arr, 180)
-print("rotate Point", test)
+print("rotate Point", unterfunktionen.rotate_point([0, 5], 180))
