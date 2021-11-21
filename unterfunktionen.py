@@ -40,10 +40,18 @@ def convert_list_to_float(list):
 
 # Punkt-Drehung
 def rotate_point(p, angle):
-    alpha = angle * (math.pi / 180)
-    p_n = [0, 0]
-    p_n[0] = (math.cos(alpha) * p[0]) + (-math.sin(alpha) * p[1])
-    p_n[1] = (math.sin(alpha) * p[0]) + (math.cos(alpha) * p[1])
-    p_n[0] = round(p_n[0], 3)
-    p_n[1] = round(p_n[1], 3)
-    return p_n
+
+    alpha = angle * (math.pi / 180)         # convert deg to rad
+
+    p_n = [0, 0]                            # create array
+
+    # calculation of new X & Y
+    p_n[0] = (math.cos(alpha) * p[0]) \
+             + (-math.sin(alpha) * p[1])
+    p_n[1] = (math.sin(alpha) * p[0]) \
+             + (math.cos(alpha) * p[1])
+
+    p_n[0] = round(p_n[0], 3)               # runde X auf 3 Nachkommastellen
+    p_n[1] = round(p_n[1], 3)               # runde Y auf 3 Nachkommastellen
+
+    return p_n                              # return point
