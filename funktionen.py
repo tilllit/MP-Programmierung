@@ -168,5 +168,24 @@ def ausfuehren(data):
 
     # PWM konfigurieren und betreiben...
 
+    # Direction Pin konfigurieren
+
+    # PWM mit Frequenz und Schrittanzahl starten
+        #konfigurieren der GPIO Pins
+
+            #kofigurieren Direction Pins
+            GPIO.setup( D.pin.M0 , GPIOOUT)    #Dir.pin Motor 0
+                            #Dir.pin Motor 1
+                            #Dir.pin Motor 2
+            # kofigurieren PWM Pins
+            GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM.pin Motor 0
+
+
+        #Starten der PWMs
+
+
+
+
+
     #
     pass
