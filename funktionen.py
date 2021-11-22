@@ -118,6 +118,7 @@ def berechnung(line):
         p[1] = Vx * (0.5) + Vy * (-math.sqrt(3) / 2)
         p[2] = Vx * (0.5) + Vy * (math.sqrt(3) / 2)
 
+        # vres ist die Frequenz der PWM
         vres = []
         for i in range(len(p)):
             vres.append((p[i] * vE * PPR) / r)
