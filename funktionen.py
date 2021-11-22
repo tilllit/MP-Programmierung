@@ -150,12 +150,12 @@ def ausfuehren():
             GPIO.setup( D.pin.M0 , GPIOOUT)    #Dir.pin Motor 0
                             #Dir.pin Motor 1
                             #Dir.pin Motor 2
-            # kofigurieren PWM Pins
+            #kofigurieren PWM Pins
             GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM.pin Motor 0
 
 
-        #Starten der PWMs
-
+            #Starten der PWMs
+            GPIO.PWM( 'pin', 'Frequenz')
 
 
 
