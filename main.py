@@ -8,9 +8,9 @@ file.close()
 
 # Geht Zeile für Zeile durch
 for line in lines:
-    LineObj = funktionen.laden(line)    # Schritt 1: G-Code
-    funktionen.berechnung(LineObj)      # Schritt 2: Bewegung berechnen
-    funktionen.ausfuehren()             # Schritt 3: Bewegung ausführen
+    LineObj = funktionen.laden(line)        # Schritt 1: G-Code
+    data = funktionen.berechnung(LineObj)   # Schritt 2: Bewegung berechnen
+    funktionen.ausfuehren(data)             # Schritt 3: Bewegung ausführen
 
 #                 !!!   ----    ! TESTBEREICH !     ----   !!!
 

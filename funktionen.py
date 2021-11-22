@@ -90,9 +90,15 @@ def laden(line):
 def berechnung(line):
 
     # Definition of constants
-    vE = 10     # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
-    r = 0.1     # Radius omni wheel [m]
-    PPR = 200   # Motor-Schritte pro Umdrehung
+    vE = 10                 # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
+    r = 0.051               # Radius omni wheel [m]
+    PPR = 200               # Motor-Schritte pro Umdrehung
+    U = 2 * math.pi * r     # Umfang des Rades
+
+    # Motor Objekte erzeugen
+    M1 = unterfunktionen.Motor(0, 0, 0)
+    M2 = unterfunktionen.Motor(0, 0, 0)
+    M3 = unterfunktionen.Motor(0, 0, 0)
 
     # Hier sollen 3 Fälle unterschieden werden
 
@@ -108,32 +114,53 @@ def berechnung(line):
     if line.g == 1:
         print("Berechnung für G1")
 
-        EV = unterfunktionen.unit_vector([line.x, line.y])       # Einheitsvektor bilden
-        Vx = EV[0]
-        Vy = EV[1]
+        EV = unterfunktionen.unit_vector([line.x, line.y])      # Einheitsvektor bilden
+        perc = unterfunktionen.cal_percent(EV)                  # Prozentuale Anteile Berechnen
 
-        # Prozentuale Anteile Berechnen (evtl. als Unterfunktion auslagern!!!)
-        p = [0, 0, 0]
-        p[0] = Vx * (-1) + Vy * 0
-        p[1] = Vx * (0.5) + Vy * (-math.sqrt(3) / 2)
-        p[2] = Vx * (0.5) + Vy * (math.sqrt(3) / 2)
+        #               --- !!! R I C H T U N G !!! ---
 
-        # vres ist die Frequenz der PWM
+        ret = unterfunktionen.convert_direction(perc)           # ruft convert_direction Funktion auf
+        perc = ret[0]                                           # perc ist das erste Array
+        dir = ret[1]                                            # dir ist das zweite Array
+        # gespeichert in dir (Array aus 3 Werten)
+        M1.dir = dir[0]
+
+        #               --- !!! F R E Q U E N Z !!! ---
+
         vres = []
-        for i in range(len(p)):
-            vres.append((p[i] * vE * PPR) / r)
-        print("Vres: ", vres)
+        for i in range(len(perc)):
+            vres.append((perc[i] * vE * PPR) / r)
+        # gespeichert in vres (Array mit 3 Werten)
 
-        # Berechnung der Dauer ...
 
+        #               --- !!! A N Z A H L  D E R  S C H R I T T E !!! ---
+
+        step = []
+        for s in range(2):
+            step.append(unterfunktionen.cal_steps([line.x, line.y], perc[s], PPR, U))
+        # gespeichert in step (Array mit 3 Werten)
+
+
+
+
+        # Ende für G1 Befehl
+        return [dir, vres, step]
 
 
     # Fall 3:       --- G2 Befehl ---
     if line.g == 2:
-        pass
+        return 12
+    else:
+        return 12
 
 
-def ausfuehren():
+def ausfuehren(data):
+    if data == 12:
+        print("Kein bekannte G-Befehl")
+    else:
+        dir = data[0]
+        print("Ausführen dir: ", dir)
+
 
     # Hier soll die Bewegung der Räder gesteuert werden
 

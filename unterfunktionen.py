@@ -12,6 +12,12 @@ class Line:
         self.i = ""
         self.j = ""
 
+class Motor:
+    def __init__(self, Dir, Freq, Pulse):
+        self.dir = Dir
+        self.freq = Freq
+        self.pulse = Pulse
+
 # Umformung in Integer
 def convert_list_to_int(list):
     str = ""            # initialize String
@@ -69,3 +75,32 @@ def unit_vector(vec):
     except:
         res = [0, 0]
     return res
+
+# Berechnet den prozentualen Anteil
+def cal_percent(vec):
+
+    #   !!! --- EVTL UM DIRECTION ERWEITERN --- !!!
+
+    p = [0, 0, 0]                                               # Erstellt Array
+    p[0] = vec[0] * (-1) + vec[1] * 0                           # Berechnet v1
+    p[1] = vec[0] * (0.5) + vec[1] * (-math.sqrt(3) / 2)        # Berechnet v2
+    p[2] = vec[0] * (0.5) + vec[1] * (math.sqrt(3) / 2)         # Berechnet v3
+
+    return p                                                    # giebt Array zurück
+
+def convert_direction(perc):
+    dir = [0, 0, 0]
+    for i in range(len(perc)):
+        if perc[i] < 0:                         # wenn negativ
+            dir[i] = 1                          # direction auf 1
+            perc[i] = math.sqrt(perc[i]**2)     # Betrag bilden
+
+    return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurück
+
+# Berechnet die Anzahl der Schritte
+def cal_steps(vec, perc, PPR, U):
+
+    bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
+    step = bvec * perc * (PPR / U)                      # Berechnet Schritte
+
+    return step                                         # Giebt Anzahl der Schritte zurück
