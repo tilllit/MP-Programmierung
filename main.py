@@ -2,7 +2,7 @@ import funktionen
 import unterfunktionen
 
 # Datei öffnen
-file = open("gcode.txt","r")
+file = open("gcode-2.txt","r")
 lines = file.readlines()
 file.close()
 
