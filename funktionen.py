@@ -126,6 +126,8 @@ def berechnung(line):
 
         # Berechnung der Dauer ...
 
+
+
     # Fall 3:       --- G2 Befehl ---
     if line.g == 2:
         pass
@@ -135,7 +137,9 @@ def ausfuehren():
 
     # Hier soll die Bewegung der Räder gesteuert werden
 
+    # Eingangsparameter: Anzahl an Schritten, Freuquenz, Richtung (jeweils pro Motor)
+
     # PWM konfigurieren und betreiben...
 
-    # no no nonsense BULLLshit
+    #
     pass
