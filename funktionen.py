@@ -113,13 +113,15 @@ def berechnung(line):
         Vy = EV[1]
 
         # Prozentuale Anteile Berechnen (evtl. als Unterfunktion auslagern!!!)
-
+        p = [0, 0, 0]
         p[0] = Vx * (-1) + Vy * 0
         p[1] = Vx * (0.5) + Vy * (-math.sqrt(3) / 2)
         p[2] = Vx * (0.5) + Vy * (math.sqrt(3) / 2)
 
-        for x in p:
-            vres[x] = (p[x] * vE * PPR) / r
+        vres = []
+        for i in range(len(p)):
+            vres.append((p[i] * vE * PPR) / r)
+        print("Vres: ", vres)
 
         # Berechnung der Dauer ...
 
