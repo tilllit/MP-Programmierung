@@ -1,6 +1,8 @@
 # Importe:
 import math
 
+
+
 # Klasse für Line-Objekt erstellen
 class Line:
     def __init__(self, X, Y, Z):
