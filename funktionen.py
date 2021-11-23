@@ -182,11 +182,3 @@ def ausfuehren(data):
         PWM0.start(50)
         time.sleep(t)
         PWM1.stop()
-
-
-
-
-
-
-    #
-    pass
