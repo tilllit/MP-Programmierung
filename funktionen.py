@@ -121,28 +121,58 @@ def berechnung(line):
 
         #               --- !!! F R E Q U E N Z !!! ---
 
-        vres = []
+        freq = []                                               # Erstellt Array
         for i in range(len(perc)):
-            vres.append((perc[i] * vE * PPR) / r)
+            freq.append((perc[i] * vE * PPR) / r)               # Berechnet die 3 Werte
         # gespeichert in vres (Array mit 3 Werten)
 
 
         #               --- !!! A N Z A H L  D E R  S C H R I T T E !!! ---
 
-        step = []
-        for s in range(2):
-            step.append(unterfunktionen.cal_steps([line.x, line.y], perc[s], PPR, U))
+        step = []                                               # Erstellt Array
+        for s in range(len(perc)):
+            step.append(
+                unterfunktionen.cal_steps(
+                    [line.x, line.y], perc[s], PPR, U
+                )
+            )                                                   # Berechnet Schritte
         # gespeichert in step (Array mit 3 Werten)
 
-
-
-
         # Ende für G1 Befehl
-        return [dir, vres, step]
-
+        return [dir, freq, step]
 
     # Fall 3:       --- G2 Befehl ---
     if line.g == 2:
+
+        #          !       F R A G E      !
+
+        # In unserem beispel wird immer ein voller Halbkreis gefahren
+        # wenn aber die Koordinate zu der gefahren werden soll (X, Y)
+        # einen kleinerne oder größersn Winkel um den Mittelpunkt (I, J) fährt ? ! ? ! ? ! ? ! ? !
+
+        # Annahme: Winel der um Mittelpunkt gefahren wird wird erstmal definiert...
+
+        alpha = 180     # deg
+
+        #           !       F R A G E       !
+
+        # Und in wie viele Geraden unterteilt ? ! ? ! ? ! ? !
+        # Annahme: Erstmal fester Wert
+
+        pcs = 5         # Anzahl zerlegter Befehle
+
+        beta = alpha / pcs
+        koord = []
+        for k in range(pcs-1):
+            koord.append(unterfunktionen.rotate_point([line.x, line.y],(beta * (k+1))))
+
+        #           !       F R A G E       !
+
+        # koord ist ein Arrray und enthält pcs * X, Y Koordinaten entlang des Kreises
+        # -> return koord ? ! ? ! ? !
+        #   -> oder aufruf von hier
+        #       -> dann return wert, der die ausführung dann aussetzt
+
         return [[1,2,3], [4,5,6], [7,8,9]]
     else:
         return False
