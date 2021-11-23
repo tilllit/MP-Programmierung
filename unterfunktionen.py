@@ -5,20 +5,13 @@ import math
 
 # Klasse für Line-Objekt erstellen
 class Line:
-    def __init__(self, Nr, X, Y, Z):
-        self.nr = Nr
-        self.g = ""
+    def __init__(self, X, Y, Z):
+        self.g = None
         self.x = X
         self.y = Y
         self.z = Z
         self.i = ""
         self.j = ""
-
-class Motor:
-    def __init__(self, Dir, Freq, Pulse):
-        self.dir = Dir
-        self.freq = Freq
-        self.pulse = Pulse
 
 # Umformung in Integer
 def convert_list_to_int(list):

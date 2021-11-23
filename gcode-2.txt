@@ -1,4 +1,4 @@
-[Gcode vom 22.11.]
+[gcode vom 22.11.]
 [T1  D=3.175 CR=0. - ZMIN=-6. - Schaftfraser]
 G90
 G22
