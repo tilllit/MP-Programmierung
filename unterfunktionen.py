@@ -2,7 +2,6 @@
 import math
 
 
-
 # Klasse für Line-Objekt erstellen
 class Line:
     def __init__(self, X, Y, Z):
@@ -12,6 +11,7 @@ class Line:
         self.z = Z
         self.i = ""
         self.j = ""
+
 
 # Umformung in Integer
 def convert_list_to_int(list):
@@ -83,6 +83,7 @@ def cal_percent(vec):
 
     return p                                                    # giebt Array zurück
 
+# Ermittelt Richtung und bildet den Betrag der prozentualen Anteile
 def convert_direction(perc):
     dir = [0, 0, 0]
     for i in range(len(perc)):

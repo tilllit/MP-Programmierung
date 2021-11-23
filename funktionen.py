@@ -12,7 +12,6 @@ def laden(line):
     l = list(line)
     c = 0
     G = ""
-    N = ""
     X = ""
     Y = ""
     Z = ""
@@ -29,11 +28,6 @@ def laden(line):
                     c2 += 1
             except:
                 break
-        if (x == "N"):                  # evtl. unnötig -> Je nach Postprozessor...
-            c2 = c + 1
-            while (l[c2] != " "):
-                N += l[c2]
-                c2 += 1
         if (x == "X"):
             c2 = c + 1
             try:
@@ -77,12 +71,13 @@ def laden(line):
         c += 1
 
     # Create Line-Object with converted numbers
-    L = unterfunktionen.Line(unterfunktionen.convert_list_to_int(N),
+    L = unterfunktionen.Line(
                              unterfunktionen.convert_list_to_float(X),
                              unterfunktionen.convert_list_to_float(Y),
                              unterfunktionen.convert_list_to_float(Z)
                              )
-    L.g = unterfunktionen.convert_list_to_int(G)
+    if G != "":
+        L.g = unterfunktionen.convert_list_to_int(G)
     L.i = unterfunktionen.convert_list_to_float(I)
     L.j = unterfunktionen.convert_list_to_float(J)
 
@@ -91,16 +86,14 @@ def laden(line):
 
 def berechnung(line):
 
-    # Definition of constants
+    #                   --- !!! K O N S T A N T E N !!! ---
+
     vE = 10                 # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
     r = 0.051               # Radius omni wheel [m]
     PPR = 200               # Motor-Schritte pro Umdrehung
     U = 2 * math.pi * r     # Umfang des Rades
 
-    # Motor Objekte erzeugen
-    M1 = unterfunktionen.Motor(0, 0, 0)
-    M2 = unterfunktionen.Motor(0, 0, 0)
-    M3 = unterfunktionen.Motor(0, 0, 0)
+
 
     # Hier sollen 3 Fälle unterschieden werden
 
@@ -112,6 +105,7 @@ def berechnung(line):
 
     # Restliche Fälle / Lines sind vorerst uninteressant...     (G0 auch einprogrammieren???)
 
+
     # Fall 2:       --- G1 Befehl ---
     if line.g == 1:
         print("Berechnung für G1")
@@ -121,11 +115,9 @@ def berechnung(line):
 
         #               --- !!! R I C H T U N G !!! ---
 
-        ret = unterfunktionen.convert_direction(perc)           # ruft convert_direction Funktion auf
-        perc = ret[0]                                           # perc ist das erste Array
-        dir = ret[1]                                            # dir ist das zweite Array
+        perc, dir = unterfunktionen.convert_direction(perc)     # ruft convert_direction Funktion auf
         # gespeichert in dir (Array aus 3 Werten)
-        M1.dir = dir[0]
+
 
         #               --- !!! F R E Q U E N Z !!! ---
 
@@ -151,46 +143,42 @@ def berechnung(line):
 
     # Fall 3:       --- G2 Befehl ---
     if line.g == 2:
-        return 12
+        return [[1,2,3], [4,5,6], [7,8,9]]
     else:
-        return 12
+        return False
 
 
 def ausfuehren(data):
-    if data == 12:
-        print("Kein bekannte G-Befehl")
+
+    if data != False:
+        dir, freq, step = data
+        print("Direction", dir)
+        print("Frequency", freq)
+        print("Steps", step)
+        print("")
     else:
-        dir = data[0]
-        print("Ausführen dir: ", dir)
+        print("G not defined")
 
 
     # Hier soll die Bewegung der Räder gesteuert werden
 
     # Eingangsparameter: Anzahl an Schritten, Freuquenz, Richtung (jeweils pro Motor)
 
-        GPIO.setmode(GPIO.BCM)
-
-        # Laufzeit der PWMs berechen
-        t = ...
-
-        #kofigurieren Direction Pins
-        GPIO.setup(Dir.pin.M0 , GPIOOUT)    #Direction.pin Motor 0
-                            #Dir.pin Motor 1
-                            #Dir.pin Motor 2
-
-        #kofigurieren PWM Pins
-        GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM0.pin Motor 0
-
-        #Starten der PWMs
-        PWM0 = GPIO.PWM( 'pin', 'Frequenz')
-        PWM0.start(50)
-        time.sleep(t)
-        PWM1.stop()
-
-
-
-
-
-
-    #
-    pass
+        # GPIO.setmode(GPIO.BCM)
+        #
+        # # Laufzeit der PWMs berechen
+        # t = ...
+        #
+        # #kofigurieren Direction Pins
+        # GPIO.setup(Dir.pin.M0 , GPIOOUT)    #Direction.pin Motor 0
+        #                     #Dir.pin Motor 1
+        #                     #Dir.pin Motor 2
+        #
+        # #kofigurieren PWM Pins
+        # GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM0.pin Motor 0
+        #
+        # #Starten der PWMs
+        # PWM0 = GPIO.PWM( 'pin', 'Frequenz')
+        # PWM0.start(50)
+        # time.sleep(t)
+        # PWM1.stop()
