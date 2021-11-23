@@ -164,21 +164,21 @@ def ausfuehren(data):
 
     # Eingangsparameter: Anzahl an Schritten, Freuquenz, Richtung (jeweils pro Motor)
 
-        GPIO.setmode(GPIO.BCM)
-
-        # Laufzeit der PWMs berechen
-        t = ...
-
-        #kofigurieren Direction Pins
-        GPIO.setup(Dir.pin.M0 , GPIOOUT)    #Direction.pin Motor 0
-                            #Dir.pin Motor 1
-                            #Dir.pin Motor 2
-
-        #kofigurieren PWM Pins
-        GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM0.pin Motor 0
-
-        #Starten der PWMs
-        PWM0 = GPIO.PWM( 'pin', 'Frequenz')
-        PWM0.start(50)
-        time.sleep(t)
-        PWM1.stop()
+        # GPIO.setmode(GPIO.BCM)
+        #
+        # # Laufzeit der PWMs berechen
+        # t = ...
+        #
+        # #kofigurieren Direction Pins
+        # GPIO.setup(Dir.pin.M0 , GPIOOUT)    #Direction.pin Motor 0
+        #                     #Dir.pin Motor 1
+        #                     #Dir.pin Motor 2
+        #
+        # #kofigurieren PWM Pins
+        # GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM0.pin Motor 0
+        #
+        # #Starten der PWMs
+        # PWM0 = GPIO.PWM( 'pin', 'Frequenz')
+        # PWM0.start(50)
+        # time.sleep(t)
+        # PWM1.stop()
