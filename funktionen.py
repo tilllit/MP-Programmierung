@@ -161,7 +161,7 @@ def ausfuehren(data):
 
     # Hier soll die Bewegung der Räder gesteuert werden
 
-    # Eingangsparameter: Anzahl an Schritten, Freuquenz, Richtung (jeweils pro Motor)
+    # Eingangsparameter: Anzahl an Dauer, Freuquenz, Richtung (jeweils pro Motor)
 
         # GPIO.setmode(GPIO.BCM)
         #
