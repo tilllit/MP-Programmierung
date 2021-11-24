@@ -71,18 +71,6 @@ def unit_vector(vec):
         res = [0, 0]
     return res
 
-# Berechnet den prozentualen Anteil
-def cal_percent(vec):
-
-    #   !!! --- EVTL UM DIRECTION ERWEITERN --- !!!
-
-    p = [0, 0, 0]                                               # Erstellt Array
-    p[0] = vec[0] * (-1) + vec[1] * 0                           # Berechnet v1
-    p[1] = vec[0] * (0.5) + vec[1] * (-math.sqrt(3) / 2)        # Berechnet v2
-    p[2] = vec[0] * (0.5) + vec[1] * (math.sqrt(3) / 2)         # Berechnet v3
-
-    return p                                                    # giebt Array zurück
-
 # Ermittelt Richtung und bildet den Betrag der prozentualen Anteile
 def convert_direction(perc):
     dir = [0, 0, 0]
@@ -100,3 +88,18 @@ def cal_tim(vec, perc, vE):
     tim = (bvec * perc) / vE                            # Berechnung der Dauer
 
     return tim                                          # Giebt die Dauer zurück in sec
+
+
+#           --- !!! Actualy useless now... !!! ---
+
+# Berechnet den prozentualen Anteil
+def cal_percent(vec):
+
+    #   !!! --- EVTL UM DIRECTION ERWEITERN --- !!!
+
+    p = [0, 0, 0]                                               # Erstellt Array
+    p[0] = vec[0] * (-1) + vec[1] * 0                           # Berechnet v1
+    p[1] = vec[0] * (0.5) + vec[1] * (-math.sqrt(3) / 2)        # Berechnet v2
+    p[2] = vec[0] * (0.5) + vec[1] * (math.sqrt(3) / 2)         # Berechnet v3
+
+    return p                                                    # giebt Array zurück

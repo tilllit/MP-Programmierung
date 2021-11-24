@@ -5,7 +5,7 @@ import unterfunktionen
 G = ""
 
 # Datei öffnen
-file = open("gcode-2.txt","r")
+file = open("gcode-3.txt","r")
 lines = file.readlines()
 file.close()
 
