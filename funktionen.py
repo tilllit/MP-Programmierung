@@ -147,7 +147,6 @@ def berechnung(line):
     else:
         return False
 
-
 def ausfuehren(data):
 
     if data != False:
