@@ -94,9 +94,11 @@ def convert_direction(perc):
     return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurück
 
 # Berechnet die Anzahl der Schritte
-def cal_steps(vec, perc, PPR, U):
+def cal_steps(vec, perc, vE):
 
-    bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
-    step = bvec * perc * (PPR / U)                      # Berechnet Schritte
+
+
+    # bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
+    # step = bvec * perc * (PPR / U)                      # Berechnet Schritte
 
     return step                                         # Giebt Anzahl der Schritte zurück

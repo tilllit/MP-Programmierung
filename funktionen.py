@@ -127,11 +127,11 @@ def berechnung(line):
         # gespeichert in vres (Array mit 3 Werten)
 
 
-        #               --- !!! A N Z A H L  D E R  S C H R I T T E !!! ---
+        #               --- !!! D A U E R !!! ---
 
-        step = []
+        tim = []
         for s in range(2):
-            step.append(unterfunktionen.cal_steps([line.x, line.y], perc[s], PPR, U))
+            tim.append(unterfunktionen.cal_steps([line.x, line.y], perc[s], vE))
         # gespeichert in step (Array mit 3 Werten)
 
 
