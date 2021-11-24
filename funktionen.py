@@ -101,8 +101,6 @@ def berechnung(line):
 
     #       Fall 2: G1 Befehl mit X, Y oder Z Koordinaten -> anfahren mit Geschwindigkeit 2 [Fräsen]
 
-    #       Fall 3: G2 Befehl -> Zerstückelung in G1 Befehle -> abfahren mit Geschwindigkeit 2 [Fräsen]
-
     # Restliche Fälle / Lines sind vorerst uninteressant...     (G0 auch einprogrammieren???)
 
 
@@ -124,13 +122,13 @@ def berechnung(line):
         freq = []
         for i in range(len(perc)):
             freq.append((perc[i] * vE * PPR) / r)
-        # gespeichert in vres (Array mit 3 Werten)
+        # gespeichert in freq (Array mit 3 Werten)
 
 
         #               --- !!! D A U E R !!! ---
 
         tim = []
-        for s in range(2):
+        for s in range(len(perc)):
             tim.append(unterfunktionen.cal_tim([line.x, line.y], perc[s], vE))
         # gespeichert in tim (Array mit 3 Werten)
 
@@ -141,39 +139,6 @@ def berechnung(line):
         return [dir, freq, tim]
 
 
-    # Fall 3:       --- G2 Befehl ---
-    if line.g == 2:
-
-        #          !       F R A G E      !
-
-        # In unserem beispel wird immer ein voller Halbkreis gefahren
-        # wenn aber die Koordinate zu der gefahren werden soll (X, Y)
-        # einen kleinerne oder größersn Winkel um den Mittelpunkt (I, J) fährt ? ! ? ! ? ! ? ! ? !
-
-        # Annahme: Winel der um Mittelpunkt gefahren wird wird erstmal definiert...
-
-        alpha = 180     # deg
-
-        #           !       F R A G E       !
-
-        # Und in wie viele Geraden unterteilt ? ! ? ! ? ! ? !
-        # Annahme: Erstmal fester Wert
-
-        pcs = 5         # Anzahl zerlegter Befehle
-
-        beta = alpha / pcs
-        koord = []
-        for k in range(pcs-1):
-            koord.append(unterfunktionen.rotate_point([line.x, line.y],(beta * (k+1))))
-
-        #           !       F R A G E       !
-
-        # koord ist ein Arrray und enthält pcs * X, Y Koordinaten entlang des Kreises
-        # -> return koord ? ! ? ! ? !
-        #   -> oder aufruf von hier
-        #       -> dann return wert, der die ausführung dann aussetzt
-
-        return [[1,2,3], [4,5,6], [7,8,9]]
     else:
         return False
 
@@ -183,7 +148,7 @@ def ausfuehren(data):
         dir, freq, tim = data
         print("Direction", dir)
         print("Frequency", freq)
-        print("Steps", tim)
+        print("Time", tim)
         print("")
     else:
         print("G not defined")

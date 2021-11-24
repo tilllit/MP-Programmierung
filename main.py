@@ -28,11 +28,3 @@ for line in lines:
     if LineObj.g != None:
         print("G", LineObj.g, "Befehl")       # testet .g attribut eines Line Objektes
         print("")
-
-
-
-
-#               !!!     ---     ! WEITERE TESTS !       ---     !!!
-print("")
-print("Rotate Point", unterfunktionen.rotate_point([0, 5], 180))
-print("Einheitsvektorfunktion: ", unterfunktionen.unit_vector([3, 5]))
