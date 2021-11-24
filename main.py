@@ -27,4 +27,3 @@ for line in lines:
 
     if LineObj.g != None:
         print("G", LineObj.g, "Befehl")       # testet .g attribut eines Line Objektes
-        print("")

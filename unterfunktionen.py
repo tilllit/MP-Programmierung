@@ -81,13 +81,19 @@ def convert_direction(perc):
 
     return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurück
 
-# Berechnet die Anzahl der Schritte
+# Berechnet die Dauer (einzeln für jeden Motor)
 def cal_tim(vec, perc, vE):
-
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
     tim = (bvec * perc) / vE                            # Berechnung der Dauer
 
     return tim                                          # Giebt die Dauer zurück in sec
+
+# Berechnet die Dauer gesamt
+def cal_time(vec, vE):
+    bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))  # Betrag des Vektors
+    time = bvec / vE                                 # Berechnung der Dauer
+
+    return time                                      # Giebt die Dauer zurück in sec
 
 
 #           --- !!! Actualy useless now... !!! ---

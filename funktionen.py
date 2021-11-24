@@ -88,7 +88,7 @@ def berechnung(line):
 
     #                   --- !!! K O N S T A N T E N !!! ---
 
-    vE = 10                 # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
+    vE = 0.005                 # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
     r = 0.051               # Radius omni wheel [m]
     PPR = 200               # Motor-Schritte pro Umdrehung
     U = 2 * math.pi * r     # Umfang des Rades
@@ -127,12 +127,12 @@ def berechnung(line):
 
         #               --- !!! D A U E R !!! ---
 
-        tim = []
-        for s in range(len(perc)):
-            tim.append(unterfunktionen.cal_tim([line.x, line.y], perc[s], vE))
+        #tim = []                                                                   # 3 Dauern berechnen
+        #for s in range(len(perc)):
+            #tim.append(unterfunktionen.cal_tim([line.x, line.y], perc[s], vE))
+
+        tim = unterfunktionen.cal_time([line.x, line.y], vE)                        # Eine Dauer berechnen
         # gespeichert in tim (Array mit 3 Werten)
-
-
 
 
         # Ende für G1 Befehl
