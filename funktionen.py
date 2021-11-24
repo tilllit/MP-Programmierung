@@ -131,14 +131,14 @@ def berechnung(line):
 
         tim = []
         for s in range(2):
-            tim.append(unterfunktionen.cal_steps([line.x, line.y], perc[s], vE))
-        # gespeichert in step (Array mit 3 Werten)
+            tim.append(unterfunktionen.cal_tim([line.x, line.y], perc[s], vE))
+        # gespeichert in tim (Array mit 3 Werten)
 
 
 
 
         # Ende für G1 Befehl
-        return [dir, vres, step]
+        return [dir, vres, tim]
 
 
     # Fall 3:       --- G2 Befehl ---
@@ -150,10 +150,10 @@ def berechnung(line):
 def ausfuehren(data):
 
     if data != False:
-        dir, freq, step = data
+        dir, freq, tim = data
         print("Direction", dir)
         print("Frequency", freq)
-        print("Steps", step)
+        print("Steps", tim)
         print("")
     else:
         print("G not defined")
