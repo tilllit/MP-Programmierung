@@ -1,7 +1,7 @@
 import unterfunktionen
 import math
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 # ! ! !   E R W E I T E R U N G     N O T W E N D I G   ! ! !
 
@@ -151,52 +151,55 @@ def ausfuehren(data):
         print("Time", tim)
         print("")
 
-        f0 = freq[0]
-        f1 = freq[1]
-        f2 = freq[2]
+        # f0 = freq[0]
+        # f1 = freq[1]
+        # f2 = freq[2]
 
-        # ist gleich zu: f0, f1, f2 = freq
+        f0, f1, f2 = freq
 
-        # Hier soll die Bewegung der Räder gesteuert werden
+        #Hier soll die Bewegung der Räder gesteuert werden
 
-        # Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
+        #Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
 
-        # GPIO.setmode(GPIO.BCM)        #Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
+        GPIO.setmode(GPIO.BCM)        #Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
 
-        # Ausgangspins konfigurieren
+        #Ausgangspins konfigurieren
 
-        # #             --- Konfigurieren Direction Pins ---
-        # GPIO.setup(10 , GPIOOUT)      #Dir.pin Motor 0
-        # GPIO.setup(9 , GPIOOUT)       #Dir.pin Motor 1
-        # GPIO.setup(11, GPIOOUT)       #Dir.pin Motor 2
-        #
-        # #             --- konfigurieren PWM Pins ---
-        # PWM0= GPIO.setup(17, GPIOOUT) #PWM0.pin Motor 0
-        # PWM1= GPIO.setup(27, GPIOOUT) #PWM1.pin Motor 1
-        # PWM2= GPIO.setup(22, GPIOOUT) #pwm2.pin Motor 2
+        #             --- Konfigurieren Direction Pins ---
+        GPIO.setup(10 , GPIOOUT)      #Dir.pin Motor 0
+        GPIO.setup(9 , GPIOOUT)       #Dir.pin Motor 1
+        GPIO.setup(11, GPIOOUT)       #Dir.pin Motor 2
 
-        #               --- Übergeben der berechneten Frequenzen ---
-        # PWM0 = GPIO.PWM( 17, f0)   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
-        # PWM1 = GPIO.PWM( 27, f1)   # Konfigurieren der PWM1 für MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
-        # PWM2 = GPIO.PWM( 22, f2)   # Konfigurieren der PWM2 für MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
+        #             --- Konfigurieren PWM Pins ---
+        PWM0 = GPIO.setup(17, GPIOOUT) #PWM0.pin Motor 0
+        PWM1 = GPIO.setup(27, GPIOOUT) #PWM1.pin Motor 1
+        PWM2 = GPIO.setup(22, GPIOOUT) #pwm2.pin Motor 2
 
-        #               --- Übergeben der berechneten Laufzeit---
+         #             --- Übergeben der berechneten Frequenzen ---
+        PWM0 = GPIO.PWM( 17, f0)   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
+        PWM1 = GPIO.PWM( 27, f1)   # Konfigurieren der PWM1 für MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
+        PWM2 = GPIO.PWM( 22, f2)   # Konfigurieren der PWM2 für MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
 
-        #               --- Übergeben und setzen der  Richtungen (DIR.Pin 1=HIGH=>CCW /DIR.Pin 0=LOW=>CW)---
-        #
-        #............
+        #              --- Übergeben und setzen der  Richtungen (DIR.Pin 1=HIGH=>CCW /DIR.Pin 0=LOW=>CW)---
 
-        # #             ---Starten der PWMs---
+        dir_pins = [10, 9, 11]
+        for i in range(len(dir)):
+            if dir[i] == 0:
+                GPIO.output(dir_pins[i], GPIO.LOW)
+            if dir[i] == 1:
+                GPIO.output(dir_pins[i], GPIO.HIGH)
 
-        # PWM0.start(50)                        # starten der PWM0 mit DC=50
-        # PWM1.start(50)                        # starten der PWM1 mit DC=50
-        # PWM2.start(50)                        # starten der PWM2 mit DC=50
+        #             ---Starten der PWMs---
 
-        #               ---Stoppen der PWMs---
-        # time.sleep(tim)
-        # PWM0.stop()
-        # PWM1.stop()
-        # PWM2.stop()
+        PWM0.start(50)                        # starten der PWM0 mit DC=50
+        PWM1.start(50)                        # starten der PWM1 mit DC=50
+        PWM2.start(50)                        # starten der PWM2 mit DC=50
+
+        #              ---Stoppen der PWMs---
+        time.sleep(tim)
+        PWM0.stop()
+        PWM1.stop()
+        PWM2.stop()
 
     else:
         print("G not defined")
