@@ -166,14 +166,14 @@ def ausfuehren(data):
         #Ausgangspins konfigurieren
 
         #             --- Konfigurieren Direction Pins ---
-        GPIO.setup(10 , GPIOOUT)      #Dir.pin Motor 0
-        GPIO.setup(9 , GPIOOUT)       #Dir.pin Motor 1
-        GPIO.setup(11, GPIOOUT)       #Dir.pin Motor 2
+        GPIO.setup(10 , GPIO.OUT)      #Dir.pin Motor 0
+        GPIO.setup(9 , GPIO.OUT)       #Dir.pin Motor 1
+        GPIO.setup(11, GPIO.OUT)       #Dir.pin Motor 2
 
         #             --- Konfigurieren PWM Pins ---
-        PWM0 = GPIO.setup(17, GPIOOUT) #PWM0.pin Motor 0
-        PWM1 = GPIO.setup(27, GPIOOUT) #PWM1.pin Motor 1
-        PWM2 = GPIO.setup(22, GPIOOUT) #pwm2.pin Motor 2
+        PWM0 = GPIO.setup(17, GPIO.OUT) #PWM0.pin Motor 0
+        PWM1 = GPIO.setup(27, GPIO.OUT) #PWM1.pin Motor 1
+        PWM2 = GPIO.setup(22, GPIO.OUT) #pwm2.pin Motor 2
 
          #             --- Übergeben der berechneten Frequenzen ---
         PWM0 = GPIO.PWM( 17, f0)   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
