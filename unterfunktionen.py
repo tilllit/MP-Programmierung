@@ -91,7 +91,7 @@ def cal_tim(vec, perc, vE):
 # Berechnet die Dauer gesamt
 def cal_time(vec, vE):
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))  # Betrag des Vektors
-    time = bvec / vE                                 # Berechnung der Dauer
+    time = bvec / (vE * 1000)                        # Berechnung der Dauer [mm/(m/s * 1000)]
 
     return time                                      # Giebt die Dauer zurück in sec
 
