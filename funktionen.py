@@ -156,23 +156,41 @@ def ausfuehren(data):
 
     # Hier soll die Bewegung der Räder gesteuert werden
 
-    # Eingangsparameter: Anzahl an Dauer, Freuquenz, Richtung (jeweils pro Motor)
+    # Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
 
-        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setmode(GPIO.BCM)        #Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
+
+        # Ausgangspins konfigurieren
+
+        # #             --- Konfigurieren Direction Pins ---
+        # GPIO.setup(10 , GPIOOUT)      #Dir.pin Motor 0
+        # GPIO.setup(9 , GPIOOUT)       #Dir.pin Motor 1
+        # GPIO.setup(11, GPIOOUT)       #Dir.pin Motor 2
         #
-        # # Laufzeit der PWMs berechen
-        # t = ...
-        #
-        # #kofigurieren Direction Pins
-        # GPIO.setup(Dir.pin.M0 , GPIOOUT)    #Direction.pin Motor 0
-        #                     #Dir.pin Motor 1
-        #                     #Dir.pin Motor 2
-        #
-        # #kofigurieren PWM Pins
-        # GPIO.setup(PWM.pin.M0, GPIOOUT)     #PWM0.pin Motor 0
-        #
-        # #Starten der PWMs
-        # PWM0 = GPIO.PWM( 'pin', 'Frequenz')
-        # PWM0.start(50)
+        # #             --- konfigurieren PWM Pins ---
+        # PWM0= GPIO.setup(17, GPIOOUT)         #PWM0.pin Motor 0
+        # PWM1= GPIO.setup(27, GPIOOUT)        #PWM1.pin Motor 1
+        # PWM2= GPIO.setup(22, GPIOOUT)        #pwm2.pin Motor 2
+
+        #               --- Übergeben der berechneten Frequenzen ---
+        # PWM0 = GPIO.PWM( 17 , 'Frequenz')   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
+        # PWM1 = GPIO.PWM( 27, 'Frequenz')   # Konfigurieren der PWM1 für MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
+        # PWM2 = GPIO.PWM( 22, 'Frequenz')   # Konfigurieren der PWM für MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
+
+        #               --- Übergeben der berechneten Laufzeit---
+        # t= ....
+
+        #               --- Übergeben und setzen der  Richtungen (DIR.Pin HIGH=>CCW /DIR.Pin LOW=>CW)---
+
+
+        # #             ---Starten der PWMs---
+
+        # PWM0.start(50)                        # starten der PWM0 mir DC=50
+        # PWM1.start(50)                        # starten der PWM1 mir DC=50
+        # PWM2.start(50)                        # starten der PWM2 mir DC=50
+
+        #               ---Stoppen der PWMs---
         # time.sleep(t)
+        # PWM0.stop()
         # PWM1.stop()
+        # PWM2.stop()
