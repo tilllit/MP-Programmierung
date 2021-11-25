@@ -150,13 +150,16 @@ def ausfuehren(data):
         print("Frequency", freq)
         print("Time", tim)
         print("")
-    else:
-        print("G not defined")
 
+        f0 = freq[0]
+        f1 = freq[1]
+        f2 = freq[2]
 
-    # Hier soll die Bewegung der Räder gesteuert werden
+        # ist gleich zu: f0, f1, f2 = freq
 
-    # Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
+        # Hier soll die Bewegung der Räder gesteuert werden
+
+        # Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
 
         # GPIO.setmode(GPIO.BCM)        #Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
 
@@ -173,12 +176,11 @@ def ausfuehren(data):
         # PWM2= GPIO.setup(22, GPIOOUT)        #pwm2.pin Motor 2
 
         #               --- Übergeben der berechneten Frequenzen ---
-        # PWM0 = GPIO.PWM( 17 , 'Frequenz')   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
-        # PWM1 = GPIO.PWM( 27, 'Frequenz')   # Konfigurieren der PWM1 für MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
-        # PWM2 = GPIO.PWM( 22, 'Frequenz')   # Konfigurieren der PWM für MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
+        # PWM0 = GPIO.PWM( 17, f0)   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
+        # PWM1 = GPIO.PWM( 27, f1)   # Konfigurieren der PWM1 für MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
+        # PWM2 = GPIO.PWM( 22, f2)   # Konfigurieren der PWM2 für MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
 
         #               --- Übergeben der berechneten Laufzeit---
-        # t= ....
 
         #               --- Übergeben und setzen der  Richtungen (DIR.Pin HIGH=>CCW /DIR.Pin LOW=>CW)---
 
@@ -190,7 +192,10 @@ def ausfuehren(data):
         # PWM2.start(50)                        # starten der PWM2 mir DC=50
 
         #               ---Stoppen der PWMs---
-        # time.sleep(t)
+        # time.sleep(tim)
         # PWM0.stop()
         # PWM1.stop()
         # PWM2.stop()
+
+    else:
+        print("G not defined")
