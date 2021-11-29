@@ -88,7 +88,7 @@ def berechnung(line):
 
     #                   --- !!! K O N S T A N T E N !!! ---
 
-    vE = 0.005                 # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
+    vE = 0.005              # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
     r = 0.051               # Radius omni wheel [m]
     PPR = 200               # Motor-Schritte pro Umdrehung
     U = 2 * math.pi * r     # Umfang des Rades
@@ -151,17 +151,9 @@ def ausfuehren(data):
         print("Time", tim)
         print("")
 
-        # f0 = freq[0]
-        # f1 = freq[1]
-        # f2 = freq[2]
+        f0, f1, f2 = freq           # Weist die Frequenzen zu
 
-        f0, f1, f2 = freq
-
-        #Hier soll die Bewegung der Räder gesteuert werden
-
-        #Eingangsparameter: Dauer, Freuquenz in Hz(jeweils pro Motor), Richtung (jeweils pro Motor)
-
-        GPIO.setmode(GPIO.BCM)        #Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
+        GPIO.setmode(GPIO.BCM)      # Definiert das Nummerierung "GPIOx" für Pin Bezeichnung verwendet wird
 
         #Ausgangspins konfigurieren
 
@@ -175,9 +167,9 @@ def ausfuehren(data):
         PWM1 = GPIO.setup(27, GPIO.OUT) #PWM1.pin Motor 1
         PWM2 = GPIO.setup(22, GPIO.OUT) #pwm2.pin Motor 2
 
-        run = []
+        run = []                       # Array zum vermeiden von try & except
 
-         #             --- Übergeben der berechneten Frequenzen ---
+        #             --- Übergeben der berechneten Frequenzen ---
         if f0 != 0:
             PWM0 = GPIO.PWM( 17, f0)   # Konfigurieren der PWM0 für MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
             run.append(PWM0)
@@ -202,10 +194,6 @@ def ausfuehren(data):
         for r in run:
             r.start(50)
 
-        # PWM0.start(50)                        # starten der PWM0 mit DC=50
-        # PWM1.start(50)                        # starten der PWM1 mit DC=50
-        # PWM2.start(50)                        # starten der PWM2 mit DC=50
-
         # sonst halt mit einzelnen if-Abfragen...
 
         #              --- Fahrdauer ---
@@ -215,10 +203,6 @@ def ausfuehren(data):
 
         for r in run:
             r.stop()
-
-        # PWM0.stop()
-        # PWM1.stop()
-        # PWM2.stop()
 
     else:
         print("G not defined")
