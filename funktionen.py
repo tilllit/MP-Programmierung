@@ -111,10 +111,6 @@ def berechnung(line):
 
         #               --- !!! D A U E R !!! ---
 
-        #tim = []                                                                   # 3 Dauern berechnen
-        #for s in range(len(perc)):
-            #tim.append(unterfunktionen.cal_tim([line.x, line.y], perc[s], vE))
-
         tim = unterfunktionen.cal_time([line.x, line.y], vE)                        # Eine Dauer berechnen
         # gespeichert in tim (Array mit 3 Werten)
 
