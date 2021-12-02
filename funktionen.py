@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 
 # ! ! !   E R W E I T E R U N G     N O T W E N D I G   ! ! !
 
-# Liest N, X, Y & Z aus der Zeile und erstellt Line-Objekt
+# Liest G, X, Y & Z aus der Zeile und erstellt Line-Objekt
 def laden(line):
 
     # Create variables
@@ -15,8 +15,6 @@ def laden(line):
     X = ""
     Y = ""
     Z = ""
-    I = ""
-    J = ""
 
     # Read the Line (Hier weitere G-Befehle hinzufügen!!!!)
     for x in l:
@@ -52,22 +50,6 @@ def laden(line):
                     c2 += 1
             except:
                 break
-        if (x == "I"):
-            c2 = c + 1
-            try:
-                while (l[c2] != " "):
-                    I += l[c2]
-                    c2 += 1
-            except:
-                break
-        if (x == "J"):
-            c2 = c + 1
-            try:
-                while (l[c2] != " "):
-                    J += l[c2]
-                    c2 += 1
-            except:
-                break
         c += 1
 
     # Create Line-Object with converted numbers
@@ -78,35 +60,33 @@ def laden(line):
                              )
     if G != "":
         L.g = unterfunktionen.convert_list_to_int(G)
-    L.i = unterfunktionen.convert_list_to_float(I)
-    L.j = unterfunktionen.convert_list_to_float(J)
 
     # returns Line-Object
     return L
 
 def berechnung(line):
 
-    #                   --- !!! K O N S T A N T E N !!! ---
+    #                   --- !!! K O N S T A N T E N (Killough) !!! ---
 
     vE = 0.005              # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
     r = 0.051               # Radius omni wheel [m]
     PPR = 200               # Motor-Schritte pro Umdrehung
     U = 2 * math.pi * r     # Umfang des Rades
 
+    #                   --- !!! Z - A C H S E (Settings) !!! ---
+
+    vZ = 0.005              # Z - Geschwindigkeit [m/s]
+    Z_PPR = 200             # Motor-Schritte pro Umdrehung
 
 
-    # Hier sollen 3 Fälle unterschieden werden
-
-    #       Fall 1: in der Line stehen nur X, Y oder Z Koordinaten -> einfach anfahren (mit Geschwindigkeit 1 [Bohren])
-
-    #       Fall 2: G1 Befehl mit X, Y oder Z Koordinaten -> anfahren mit Geschwindigkeit 2 [Fräsen]
-
-    # Restliche Fälle / Lines sind vorerst uninteressant...     (G0 auch einprogrammieren???)
-
-
-    # Fall 2:       --- G1 Befehl ---
+    #                   --- G1  B E F E H L ---
     if line.g == 1:
-        print("Berechnung für G1")
+        print("Berechnung fuer G1")
+
+        if line.z != 0:
+            pass
+
+        #       --- !!! K I L L O U G H  B E R E C H N U N G !!! ---
 
         EV = unterfunktionen.unit_vector([line.x, line.y])      # Einheitsvektor bilden
         perc = unterfunktionen.cal_percent(EV)                  # Prozentuale Anteile Berechnen

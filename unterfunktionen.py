@@ -9,14 +9,12 @@ class Line:
         self.x = X
         self.y = Y
         self.z = Z
-        self.i = ""
-        self.j = ""
 
 
 # Umformung in Integer
 def convert_list_to_int(list):
     str = ""            # initialize String
-    e = 0               # Für den Fall, dass String leer ist
+    e = 0               # Fuer den Fall, dass String leer ist
 
     for x in list:      # add Elements to String
         str += x
@@ -31,7 +29,7 @@ def convert_list_to_int(list):
 # Umformung in Float
 def convert_list_to_float(list):
     str = ""            # initialize String
-    e = 0               # Für den Fall, dass String leer ist
+    e = 0               # Fuer den Fall, dass String leer ist
 
     for x in list:      # add Elements to String
         str += x
@@ -79,21 +77,26 @@ def convert_direction(perc):
             dir[i] = 1                          # direction auf 1
             perc[i] = math.sqrt(perc[i]**2)     # Betrag bilden
 
-    return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurück
+    return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurueck
 
-# Berechnet die Dauer (einzeln für jeden Motor)
+# Berechnet die Dauer (einzeln fuer jeden Motor)
 def cal_tim(vec, perc, vE):
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
     tim = (bvec * perc) / vE                            # Berechnung der Dauer
 
-    return tim                                          # Giebt die Dauer zurück in sec
+    return tim                                          # Giebt die Dauer zurueck in sec
 
 # Berechnet die Dauer gesamt
 def cal_time(vec, vE):
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))  # Betrag des Vektors
     time = bvec / (vE * 1000)                        # Berechnung der Dauer [mm/(m/s * 1000)]
 
-    return time                                      # Giebt die Dauer zurück in sec
+    return time                                      # Giebt die Dauer zurueck in sec
+
+#           --- !!! F U N C  F O R  Z !!! ---
+
+def cal_z_time():
+    print("func Aufruf Z")
 
 
 #           --- !!! Actualy useless now... !!! ---
@@ -108,4 +111,4 @@ def cal_percent(vec):
     p[1] = vec[0] * (0.5) + vec[1] * (-math.sqrt(3) / 2)        # Berechnet v2
     p[2] = vec[0] * (0.5) + vec[1] * (math.sqrt(3) / 2)         # Berechnet v3
 
-    return p                                                    # giebt Array zurück
+    return p                                                    # giebt Array zurueck
