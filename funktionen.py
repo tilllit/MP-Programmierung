@@ -111,8 +111,8 @@ def berechnung(line):
 
         #               --- !!! D A U E R !!! ---
 
-        tim = unterfunktionen.cal_time([line.x, line.y], vE)                        # Eine Dauer berechnen
-        # gespeichert in tim (Array mit 3 Werten)
+        tim = unterfunktionen.cal_time([line.x, line.y], vE)    # Eine Dauer berechnen
+        # gespeichert in tim
 
 
         # Ende für G1 Befehl
