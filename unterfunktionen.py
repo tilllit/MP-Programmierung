@@ -4,17 +4,20 @@ import math
 
 # Klasse für Line-Objekt erstellen
 class Line:
-    def __init__(self, X, Y, Z):
+    def __init__(self):
         self.g = None
-        self.x = X
-        self.y = Y
-        self.z = Z
+        self.x = None
+        self.y = None
+        self.z = None
 
+    def reset_ko(self):
+        self.x = 0
+        self.y = 0
+        self.z = 0
 
 # Umformung in Integer
 def convert_list_to_int(list):
     str = ""            # initialize String
-    e = 0               # Fuer den Fall, dass String leer ist
 
     for x in list:      # add Elements to String
         str += x
@@ -24,12 +27,11 @@ def convert_list_to_int(list):
         return i        # return int
 
     except:
-        return e        # return 0
+        return False    # return fals
 
 # Umformung in Float
 def convert_list_to_float(list):
     str = ""            # initialize String
-    e = 0               # Fuer den Fall, dass String leer ist
 
     for x in list:      # add Elements to String
         str += x
@@ -38,28 +40,14 @@ def convert_list_to_float(list):
         i = float(str)  # convert str to int
         return i        # return int
     except:
-        return e        # return 0
-
-# Punkt-Drehung
-def rotate_point(p, angle):
-
-    alpha = angle * (math.pi / 180)         # convert deg to rad
-
-    p_n = [0, 0]                            # create array
-
-    # calculation of new X & Y
-    p_n[0] = (math.cos(alpha) * p[0]) \
-             + (-math.sin(alpha) * p[1])
-    p_n[1] = (math.sin(alpha) * p[0]) \
-             + (math.cos(alpha) * p[1])
-
-    p_n[0] = round(p_n[0], 3)               # runde X auf 3 Nachkommastellen
-    p_n[1] = round(p_n[1], 3)               # runde Y auf 3 Nachkommastellen
-
-    return p_n                              # return point
+        return False    # return false
 
 # Einheitsvektor Berechnen
 def unit_vector(vec):
+    if vec[0] == None:
+        vec[0] = 0
+    if vec[1] == None:
+        vec[1] = 0
     bvec = math.sqrt((vec[0]**2) + (vec[1]**2))     # Betrag bilden
     try:
         X = vec[0] * (1 / bvec)
@@ -79,32 +67,16 @@ def convert_direction(perc):
 
     return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurueck
 
-# Berechnet die Dauer (einzeln fuer jeden Motor)  --- Muell!!
-def cal_tim(vec, perc, vE):
-    bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
-    tim = (bvec * perc) / vE                            # Berechnung der Dauer
-
-    return tim                                          # Giebt die Dauer zurueck in sec
-
 # Berechnet die Dauer gesamt
 def cal_time(vec, vE):
+    if vec[0] == None:
+        vec[0] = 0
+    if vec[1] == None:
+        vec[1] = 0
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))  # Betrag des Vektors
     time = bvec / (vE * 1000)                        # Berechnung der Dauer [mm/(m/s * 1000)]
 
     return time                                      # Giebt die Dauer zurueck in sec
-
-#           --- !!! F U N C  F O R  Z !!! ---
-
-def cal_z_time(vZ, Z):
-    dir = 0
-    if Z < 0:
-        dir = 1
-        Z = math.sqrt(Z **2)
-    tim = Z / vZ
-
-    return [tim, dir]
-
-#           --- !!! Actualy useless now... !!! ---
 
 # Berechnet den prozentualen Anteil
 def cal_percent(vec):
@@ -117,3 +89,16 @@ def cal_percent(vec):
     p[2] = vec[0] * (0.5) + vec[1] * (math.sqrt(3) / 2)         # Berechnet v3
 
     return p                                                    # giebt Array zurueck
+
+#           --- !!! F U N C  F O R  Z !!! ---
+
+def cal_z_time(vZ, Z):
+    dir = 0
+    if Z == None:
+        Z = 0
+    if Z < 0:
+        dir = 1
+        Z = math.sqrt(Z **2)
+    tim = Z / vZ
+
+    return [tim, dir]

@@ -1,36 +1,46 @@
 import funktionen
 import unterfunktionen
 
-# Safe the G
-G = ""
-old_Line = unterfunktionen.Line(0, 0, 0)
+# Safe attributes
+old = unterfunktionen.Line()
+old.reset_ko()
 
-# Datei öffnen
-file = open("gcode-3.txt","r")
+# Open File
+file = open("gcode-3.txt", "r")
 lines = file.readlines()
 file.close()
 
-# Geht Zeile für Zeile durch
+# Geht Zeile nach Zeile durch
 for line in lines:
     LineObj = funktionen.laden(line)        # Schritt 1: G-Code
 
-    if LineObj.g != None:
-        G = LineObj.g
+    # Carrying the G - command
+    if LineObj.g is not None:
+        old.g = LineObj.g
     elif LineObj.x != 0 or LineObj.y != 0 or LineObj.z != 0:
-        LineObj.g = G
+        LineObj.g = old.g
 
-    o_L = LineObj
-    LineObj.x = LineObj.x - old_Line.x
-    LineObj.y = LineObj.y - old_Line.y
-    LineObj.z = LineObj.z - old_Line.z
-    old_Line = o_L
+    # Carrying old position
+    if LineObj.x is not None:
+        carry = old.x
+        old.x = LineObj.x
+        LineObj.x = LineObj.x - carry
+    if LineObj.y is not None:
+        carry = old.y
+        old.y = LineObj.y
+        LineObj.y = LineObj.y - carry
+    if LineObj.z is not None:
+        carry = old.z
+        old.z = LineObj.z
+        LineObj.z = LineObj.z - carry
+
 
     data = funktionen.berechnung(LineObj)   # Schritt 2: Bewegung berechnen
-    funktionen.ausfuehren(data)             # Schritt 3: Bewegung ausführen
+    funktionen.ausfuehren(data)             # Schritt 3: Bewegung ausfuehren
 
 
 
 #                 !!!   ----    ! TESTBEREICH !     ----   !!!
 
-    if LineObj.g != None:
+    if LineObj.g is not None:
         print("G", LineObj.g, "Befehl")       # testet .g attribut eines Line Objektes
