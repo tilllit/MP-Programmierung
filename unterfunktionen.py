@@ -95,7 +95,7 @@ def cal_time(vec, vE):
 
 #           --- !!! F U N C  F O R  Z !!! ---
 
-def cal_z_time():
+def cal_z_time(freq, Z):
     print("func Aufruf Z")
 
 

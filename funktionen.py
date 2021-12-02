@@ -77,13 +77,17 @@ def berechnung(line):
 
     vZ = 0.005              # Z - Geschwindigkeit [m/s]
     Z_PPR = 200             # Motor-Schritte pro Umdrehung
+    LPR = 3                 # Hubweg pro Umdrehung [mm]
 
 
     #                   --- G1  B E F E H L ---
     if line.g == 1:
         print("Berechnung fuer G1")
 
+        #       --- !!! Z - B E R E C H N U N G !!! ---
+
         if line.z != 0:
+            zfreq = 0 # ???
             pass
 
         #       --- !!! K I L L O U G H  B E R E C H N U N G !!! ---
