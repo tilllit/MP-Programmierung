@@ -75,9 +75,9 @@ def berechnung(line):
 
     #                   --- !!! Z - A C H S E (Settings) !!! ---
 
-    vZ = 0.005              # Z - Geschwindigkeit [m/s]
+    vZ = 0.4                # Z - Geschwindigkeit [mm/s]
     Z_PPR = 200             # Motor-Schritte pro Umdrehung
-    LPR = 3                 # Hubweg pro Umdrehung [mm]
+    LPR = 8                 # Hubweg pro Umdrehung [mm]
 
 
     #                   --- G1  B E F E H L ---
@@ -87,8 +87,12 @@ def berechnung(line):
         #       --- !!! Z - B E R E C H N U N G !!! ---
 
         if line.z != 0:
-            zfreq = 0 # ???
-            pass
+            zfreq = vZ / (LPR / Z_PPR)
+            tz, zdir = unterfunktionen.cal_z_time(vZ, line.z)
+
+            # hier noch weiter mit AUSZUFUEHRENDEM OBJEKT!!!!...
+
+
 
         #       --- !!! K I L L O U G H  B E R E C H N U N G !!! ---
 

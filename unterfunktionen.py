@@ -79,7 +79,7 @@ def convert_direction(perc):
 
     return [perc, dir]                          # giebt percent und direction in 2-dimensionalem array zurueck
 
-# Berechnet die Dauer (einzeln fuer jeden Motor)
+# Berechnet die Dauer (einzeln fuer jeden Motor)  --- Muell!!
 def cal_tim(vec, perc, vE):
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))     # Betrag des Vektors
     tim = (bvec * perc) / vE                            # Berechnung der Dauer
@@ -95,9 +95,14 @@ def cal_time(vec, vE):
 
 #           --- !!! F U N C  F O R  Z !!! ---
 
-def cal_z_time(freq, Z):
-    print("func Aufruf Z")
+def cal_z_time(vZ, Z):
+    dir = 0
+    if Z < 0:
+        dir = 1
+        Z = math.sqrt(Z **2)
+    tim = Z / vZ
 
+    return [tim, dir]
 
 #           --- !!! Actualy useless now... !!! ---
 
