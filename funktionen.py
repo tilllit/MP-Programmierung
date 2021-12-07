@@ -155,7 +155,7 @@ def ausfuehren(data):
         GPIO.setup(10, GPIO.OUT)       #Dir.pin Motor 0
         GPIO.setup(9 , GPIO.OUT)       #Dir.pin Motor 1
         GPIO.setup(11, GPIO.OUT)       #Dir.pin Motor 2
-        GPIO.setup(14, GGPIO.OUT)      #Dir.pin Z-Achse
+        GPIO.setup(14, GPIO.OUT)      #Dir.pin Z-Achse
 
         #             --- Konfigurieren PWM Pins ---
         PWM0 = GPIO.setup(17, GPIO.OUT) #PWM0.pin Motor 0
