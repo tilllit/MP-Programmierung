@@ -1,7 +1,7 @@
 import unterfunktionen
 import math
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 # ! ! !   E R W E I T E R U N G     N O T W E N D I G   ! ! !
 
@@ -147,69 +147,69 @@ def ausfuehren(data):
         f0, f1, f2 = freq           # Weist die Frequenzen zu
         fz = z[0]
 
-    #     GPIO.setmode(GPIO.BCM)      # Definiert, dass Nummerierung "GPIOx" fuer Pin Bezeichnung verwendet wird
-    #
-    #     #Ausgangspins konfigurieren
-    #
-    #     #             --- Konfigurieren Direction Pins ---
-    #     GPIO.setup(10, GPIO.OUT)       #Dir.pin Motor 0
-    #     GPIO.setup(9 , GPIO.OUT)       #Dir.pin Motor 1
-    #     GPIO.setup(11, GPIO.OUT)       #Dir.pin Motor 2
-    #     GPIO.setup(?, GGPIO.OUT)       #Dir.pin Z-Achse
-    #
-    #     #             --- Konfigurieren PWM Pins ---
-    #     PWM0 = GPIO.setup(17, GPIO.OUT) #PWM0.pin Motor 0
-    #     PWM1 = GPIO.setup(27, GPIO.OUT) #PWM1.pin Motor 1
-    #     PWM2 = GPIO.setup(22, GPIO.OUT) #pwm2.pin Motor 2
-    #     PWMz = GPIO.setup(?, GPIO.OUT) #pwmZ.pin Z-Motor
-    #
-    #     run = []                       # Array zum vermeiden von try & except
-    #
-    #     #             --- Übergeben der berechneten Frequenzen ---
-    #     if f0 != 0:
-    #         PWM0 = GPIO.PWM(17, f0)   # Konfigurieren der PWM0 fuer MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
-    #         run.append(PWM0)
-    #     if f1 != 0:
-    #         PWM1 = GPIO.PWM(27, f1)   # Konfigurieren der PWM1 fuer MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
-    #         run.append(PWM1)
-    #     if f2 != 0:
-    #         PWM2 = GPIO.PWM(22, f2)   # Konfigurieren der PWM2 fuer MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
-    #         run.append(PWM2)
-    #
-    #     #              --- Uebergeben und setzen der  Richtungen (DIR.Pin 1=HIGH=>CCW /DIR.Pin 0=LOW=>CW)---
-    #
-    #     dir_pins = [10, 9, 11]
-    #     for i in range(len(dir)):
-    #         if dir[i] == 0:
-    #             GPIO.output(dir_pins[i], GPIO.LOW)
-    #         if dir[i] == 1:
-    #             GPIO.output(dir_pins[i], GPIO.HIGH)
-#         if z[2] == 0:
-#             GPIO.output(?, GPIO.LOW)
-#         if z[2] == 1:
-#             GPIO.output(?, GPIO.HIGH)
-    #
-    #     #             --- Starten der PWMs ---
-    #
+        GPIO.setmode(GPIO.BCM)      # Definiert, dass Nummerierung "GPIOx" fuer Pin Bezeichnung verwendet wird
 
-    #     if fz != 0:
-    #         PWMz = GPIO.PWM(?, fz)    # Konfigurieren der PWMz fuer Z MOTOR mit GPIO.PWM('Pin','Frequenz')
-    #         PWMz.start(50)
-    #         time.sleep(z[1])
-    #         PWMz.stop()
+        #Ausgangspins konfigurieren
 
-    #     for r in run:
-    #         r.start(50)
-    #
-    #     # sonst halt mit einzelnen if-Abfragen...
-    #
-    #     #              --- Fahrdauer ---
-    #     time.sleep(tim)
-    #
-    #     #              --- Stoppen der PWMs ---
-    #
-    #     for r in run:
-    #         r.stop()
-    #
-    # else:
-    #     print("G not defined")
+        #             --- Konfigurieren Direction Pins ---
+        GPIO.setup(10, GPIO.OUT)       #Dir.pin Motor 0
+        GPIO.setup(9 , GPIO.OUT)       #Dir.pin Motor 1
+        GPIO.setup(11, GPIO.OUT)       #Dir.pin Motor 2
+        GPIO.setup(14, GGPIO.OUT)      #Dir.pin Z-Achse
+
+        #             --- Konfigurieren PWM Pins ---
+        PWM0 = GPIO.setup(17, GPIO.OUT) #PWM0.pin Motor 0
+        PWM1 = GPIO.setup(27, GPIO.OUT) #PWM1.pin Motor 1
+        PWM2 = GPIO.setup(22, GPIO.OUT) #pwm2.pin Motor 2
+        PWMz = GPIO.setup(15, GPIO.OUT) #pwmZ.pin Z-Motor
+
+        run = []                       # Array zum vermeiden von try & except
+
+        #             --- Übergeben der berechneten Frequenzen ---
+        if f0 != 0:
+            PWM0 = GPIO.PWM(17, f0)   # Konfigurieren der PWM0 fuer MOTOR 0 mit GPIO.PWM('Pin','Frequenz')
+            run.append(PWM0)
+        if f1 != 0:
+            PWM1 = GPIO.PWM(27, f1)   # Konfigurieren der PWM1 fuer MOTOR 1 mit GPIO.PWM('Pin','Frequenz')
+            run.append(PWM1)
+        if f2 != 0:
+            PWM2 = GPIO.PWM(22, f2)   # Konfigurieren der PWM2 fuer MOTOR 2 mit GPIO.PWM('Pin','Frequenz')
+            run.append(PWM2)
+
+        #              --- Uebergeben und setzen der  Richtungen (DIR.Pin 1=HIGH=>CCW /DIR.Pin 0=LOW=>CW)---
+
+        dir_pins = [10, 9, 11]
+        for i in range(len(dir)):
+            if dir[i] == 0:
+                GPIO.output(dir_pins[i], GPIO.LOW)
+            if dir[i] == 1:
+                GPIO.output(dir_pins[i], GPIO.HIGH)
+        if z[2] == 0:
+            GPIO.output(14, GPIO.LOW)
+        if z[2] == 1:
+            GPIO.output(14, GPIO.HIGH)
+
+        #             --- Starten der PWMs ---
+
+
+        if fz != 0:
+            PWMz = GPIO.PWM(15, fz)    # Konfigurieren der PWMz fuer Z MOTOR mit GPIO.PWM('Pin','Frequenz')
+            PWMz.start(50)
+            time.sleep(z[1])
+            PWMz.stop()
+
+        for r in run:
+            r.start(50)
+
+        # sonst halt mit einzelnen if-Abfragen...
+
+        #              --- Fahrdauer ---
+        time.sleep(tim)
+
+        #              --- Stoppen der PWMs ---
+
+        for r in run:
+            r.stop()
+
+    else:
+        print("G not defined")
