@@ -185,9 +185,9 @@ def ausfuehren(data):
             if dir[i] == 1:
                 GPIO.output(dir_pins[i], GPIO.HIGH)
         if z[2] == 0:
-            GPIO.output(14, GPIO.LOW)
-        if z[2] == 1:
             GPIO.output(14, GPIO.HIGH)
+        if z[2] == 1:
+            GPIO.output(14, GPIO.LOW)
 
         #             --- Starten der PWMs ---
 
