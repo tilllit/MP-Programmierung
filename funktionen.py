@@ -78,9 +78,9 @@ def berechnung(line):
 
     #                   --- !!! Z - A C H S E (Settings) !!! ---
 
-    vZ = 0.4                # Z - Geschwindigkeit [mm/s]
+    vZ = 2                # Z - Geschwindigkeit [mm/s]
     Z_PPR = 200             # Motor-Schritte pro Umdrehung
-    LPR = 8                 # Hubweg pro Umdrehung [mm]
+    LPR = 9.6                 # Hubweg pro Umdrehung [mm]
 
 
     #                   --- G1  B E F E H L ---
@@ -153,9 +153,9 @@ def ausfuehren(data):
 
         #             --- Konfigurieren Direction Pins ---
         GPIO.setup(10, GPIO.OUT)       #Dir.pin Motor 0
-        GPIO.setup(9 , GPIO.OUT)       #Dir.pin Motor 1
+        GPIO.setup(9, GPIO.OUT)        #Dir.pin Motor 1
         GPIO.setup(11, GPIO.OUT)       #Dir.pin Motor 2
-        GPIO.setup(14, GPIO.OUT)      #Dir.pin Z-Achse
+        GPIO.setup(14, GPIO.OUT)       #Dir.pin Z-Achse
 
         #             --- Konfigurieren PWM Pins ---
         PWM0 = GPIO.setup(17, GPIO.OUT) #PWM0.pin Motor 0
