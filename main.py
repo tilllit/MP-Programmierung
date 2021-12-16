@@ -72,5 +72,4 @@ def Z_down():
     funktionen.ausfuehren([0, 0, 0], [0, 0, 0], [0, 0, 0], arr)
 
 if __name__ == '__main__':
-    while 1:
-        start()
+    main()
