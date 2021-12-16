@@ -1,10 +1,13 @@
 import funktionen
 import unterfunktionen
 from gpiozero import Button
+from signal import pause
 
 def main():
     start_button = Button(2)
     start_button.when_pressed = start
+
+    pause()
 
 def start():
     # Safe attributes
