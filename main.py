@@ -1,21 +1,36 @@
 import funktionen
 import unterfunktionen
-from gpiozero import Button
+from gpiozero import Button, LED
 from signal import pause
 
-def main():
-    start_button = Button(2)
-    start_button.when_pressed = start
+ledg = LED(18)
+ledr = LED(23)
 
+def main():
+    ledg.on()
+    ledr.off()
+    start_button = Button(2)
+    up_button = Button(3)
+    down_button = Button(4)
+    
+    start_button.when_pressed = start
+    up_button.when_pressed = Z_up
+    down_button.when_pressed = Z_down
+    
     pause()
 
 def start():
+    
+    ledg.off()
+    ledr.on()
+    
     # Safe attributes
     old = unterfunktionen.Line()
     old.reset_ko()
 
     # Open File
-    file = open("gcode-3.txt", "r")
+    file = open("/media/usb/MP/gcode.txt", "r")
+
     lines = file.readlines()
     file.close()
 
@@ -53,8 +68,15 @@ def start():
 
         if LineObj.g is not None:
             print("G", LineObj.g, "Befehl")       # testet .g attribut eines Line Objektes
+    
+    ledr.off()
+    ledg.on()
 
 def Z_up():
+    
+    ledg.off()
+    ledr.on()
+    
     vZ = 2  # Z - Geschwindigkeit [mm/s]
     Z_PPR = 200  # Motor-Schritte pro Umdrehung
     LPR = 9.6  # Hubweg pro Umdrehung [mm]
@@ -62,9 +84,16 @@ def Z_up():
     z_freq = vZ / (LPR / Z_PPR)
     z_tim, z_dir = unterfunktionen.cal_z_time(vZ, Z)
     arr = [z_freq, z_tim, 0]
-    funktionen.ausfuehren([0, 0, 0], [0, 0, 0], [0, 0, 0], arr)
+    funktionen.ausfuehren([[0, 0, 0], [0, 0, 0], 0, arr])
+    
+    ledr.off()
+    ledg.on()
 
 def Z_down():
+    
+    ledg.off()
+    ledr.on()
+    
     vZ = 2          # Z - Geschwindigkeit [mm/s]
     Z_PPR = 200     # Motor-Schritte pro Umdrehung
     LPR = 9.6       # Hubweg pro Umdrehung [mm]
@@ -72,7 +101,10 @@ def Z_down():
     z_freq = vZ / (LPR / Z_PPR)
     z_tim, z_dir = unterfunktionen.cal_z_time(vZ, Z)
     arr = [z_freq, z_tim, 1]
-    funktionen.ausfuehren([0, 0, 0], [0, 0, 0], [0, 0, 0], arr)
+    funktionen.ausfuehren([[0, 0, 0], [0, 0, 0], 0, arr])
+    
+    ledr.off()
+    ledg.on()
 
 if __name__ == '__main__':
     main()
