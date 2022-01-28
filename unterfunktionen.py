@@ -75,6 +75,7 @@ def cal_time(vec, vE):
         vec[1] = 0
     bvec = math.sqrt((vec[0] ** 2) + (vec[1] ** 2))  # Betrag des Vektors
     time = bvec / (vE * 1000)                        # Berechnung der Dauer [mm/(m/s * 1000)]
+    time = time * 1.28                               # Adjustment Factor
 
     return time                                      # Giebt die Dauer zurueck in sec
 
@@ -99,6 +100,6 @@ def cal_z_time(vZ, Z):
     if Z < 0:
         dir = 1
         Z = math.sqrt(Z **2)
-    tim = Z / vZ
+    tim = (Z / vZ) * 10
 
     return [tim, dir]
