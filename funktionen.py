@@ -71,20 +71,24 @@ def berechnung(line):
 
     #                   --- !!! K O N S T A N T E N (Killough) !!! ---
 
-    vE = 0.005              # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
+    vE = 0.0075             # Einheitsgeschwindigkeit [m/s]     !--- VARIABEL ---!
     r = 0.051               # Radius omni wheel [m]
     PPR = 200               # Motor-Schritte pro Umdrehung
     U = 2 * math.pi * r     # Umfang des Rades
 
     #                   --- !!! Z - A C H S E (Settings) !!! ---
 
-    vZ = 2                # Z - Geschwindigkeit [mm/s]
+    if line.g == 0 or line.g == 43:
+        vZ = 4              # Z - Geschwindigkeit [mm/s]
+    else:
+        vZ = 2              # Z - Geschwindigkeit [mm/s]
+        
     Z_PPR = 200             # Motor-Schritte pro Umdrehung
-    LPR = 9.6                 # Hubweg pro Umdrehung [mm]
+    LPR = 9.6               # Hubweg pro Umdrehung [mm]
 
 
     #                   --- G1  B E F E H L ---
-    if line.g == 1 or line.g == 0:
+    if line.g == 1 or line.g == 0 or line.g == 43:
         if line.g == 0:
             print("Berechnung fuer G0")
         if line.g == 1:
