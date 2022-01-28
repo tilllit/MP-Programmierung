@@ -1,8 +1,4 @@
 # MP-Programmierung
 
-Hallo Moritz & Maurice
-
-Das ist die GitHub Seite für die Software von unserem Mechatronik Projekt.
-
-Achtet darauf immer erst "Update Project" durchzuführen, bevor ihr mit der Arbeit am Projekt beginnt,
-sonst müssen wir für jede Änderung immer einen Merge durchführen.
+This Python-code was developed by students of the Berliner Hochschule für Technik. It is used on a Raspberry Pi Zero 2 to control a Goliath-CNC like CNC machine.
+All Rights Reserved by Till Körsmeier & Moritz Dornmair
